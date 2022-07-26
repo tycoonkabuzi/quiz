@@ -109,15 +109,15 @@ submit.addEventListener("click",()=>{
             //Creating some styles once the if is no long satisfied.
             else{
             
-                quiz.style.height=40+"vh";
                 quiz.style.textAlign="center";
                 quiz.style.paddingTop=10+"vh";
-                quiz.style.paddingleft=6+"vh";
-                quiz.style.paddingRight=4+"vh";
+                //quiz.style.paddingleft=6+"vh";
+                //quiz.style.paddingRight=4+"vh";
              //create a changing color and style in case the score is less or more than 2 in this case once the score is less than two the color will be red and the below message will display
                 if (score<=2){
                     quiz.innerHTML=`<h1>Vous venez d'echouer avec un score de <span style="
-                    color:red;" >${score}</span> /${dataBase.length}</h2>`;
+                    color:red;" >${score}</span> /${dataBase.length}</h2>
+                    <p> Veuillez repasser le Quiz </p> <bouton type="submit" id="submit" onClick="window.location.reload()">Reprendre</boiuton>`;// window.location.reload()  this method is used to reload the page once we are at the end and we failed.
 
                 }
                 else{
