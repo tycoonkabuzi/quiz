@@ -76,6 +76,7 @@ function getQuestions(){
 // deselect element once going to the next question.
 window.addEventListener('load',(event)=>{
     quiz.style.transform="translateX("+0+")";
+    quiz.style.backgroundColor="white";
 });
     
 
@@ -87,22 +88,25 @@ function deselectElement(){
 // calling the getQuestions function to get the first question and responses on loading page.
 getQuestions();
 submit.addEventListener("click",()=>{
-    // if currentQuestion less than the dataBase length we call the function elementSelected and getQuestions.
     
     let storedAnswer;
+    //creating a loop wich will loop over all the array answersElement and find if anything is checked. 
     answersElement.forEach((answer)=>{
         storedAnswer=answer.id;
         if (answer.checked){
-            console.log(storedAnswer);
-            console.log(dataBase[currentQuestion].correct);
+     // if any element is checked, verify if the element checked is equal to the value of dataBase[currentQuestions].correct
             if (storedAnswer==dataBase[currentQuestion].correct){
                 console.log("correct");
+                //if true add the variable score.
                 score++;
             }
+            //add the currentQuestion variable whenever time we have checked an element.
             currentQuestion++;
+            // if currentQuestion variable is less than the dataBase length, we keep calling the getQuestions function
             if (currentQuestion<dataBase.length){
                 getQuestions();
             }
+            //Creating some styles once the if is no long satisfied.
             else{
             
                 quiz.style.height=40+"vh";
@@ -110,7 +114,7 @@ submit.addEventListener("click",()=>{
                 quiz.style.paddingTop=10+"vh";
                 quiz.style.paddingleft=6+"vh";
                 quiz.style.paddingRight=4+"vh";
-
+             //create a changing color and style in case the score is less or more than 2 in this case once the score is less than two the color will be red and the below message will display
                 if (score<=2){
                     quiz.innerHTML=`<h1>Vous venez d'echouer avec un score de <span style="
                     color:red;" >${score}</span> /${dataBase.length}</h2>`;
@@ -122,6 +126,8 @@ submit.addEventListener("click",()=>{
                 }
             }
         }
+       
+       
         
     })
     
