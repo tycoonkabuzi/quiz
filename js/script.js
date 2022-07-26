@@ -105,7 +105,7 @@ submit.addEventListener("click",()=>{
         }
         else{
             quiz.style.color="green";
-        }
+        } 
         quiz.innerHTML=" <h1>You have scored  "+score+"/"+dataBase.length+"</h1> <br> <br> <br>";
 
     }
