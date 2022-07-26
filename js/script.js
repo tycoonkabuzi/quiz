@@ -1,4 +1,5 @@
 //here we create a little database which is a list of objects in the array dataBase
+
 const dataBase=[
     {
         question:"Quel est le president de la RDC ?",
@@ -62,28 +63,22 @@ function getQuestions(){
     bElement.innerText=dataBase[currentQuestion].b;
     cElement.innerText=dataBase[currentQuestion].c;
     dElement.innerText=dataBase[currentQuestion].d;
+    //console.log(dataBase[currentQuestion].question);
   
     
  
 }
 //function to get the selected element.
- function elementSelected(){
-    let answerStored;
-    answersElement.forEach((element)=>{
-        //if the element is checked we need to be able to pass to the next question after the submit button.
-        if (element.checked){
-            answerStored=element.id;// Equalizing our stored id in the variable  answerStored.
-            if (answerStored==dataBase[currentQuestion].correct){// if the id is equal to the element selected in the database then we add the score
-               score++;
-               console.log("correct");
-            }
-            currentQuestion++;// icreameting the currentQuestion once an elment is checked. 
-        }
-       
-    });
-}
+ //function elementSelected(){
+   
+//}
 
 // deselect element once going to the next question.
+window.addEventListener('load',(event)=>{
+    quiz.style.transform="translateX("+0+")";
+});
+    
+
 function deselectElement(){
     answersElement.forEach((answer) => {
        answer.checked=false;
@@ -93,23 +88,41 @@ function deselectElement(){
 getQuestions();
 submit.addEventListener("click",()=>{
     // if currentQuestion less than the dataBase length we call the function elementSelected and getQuestions.
-    if (currentQuestion<dataBase.length){
-        elementSelected();
-        getQuestions();
-    }
-    //we are defining a changing color system when the score is less or more than two.
-    else {
-        if (score<=2){
-            quiz.style.color="red";
+    
+    let storedAnswer;
+    answersElement.forEach((answer)=>{
+        storedAnswer=answer.id;
+        if (answer.checked){
+            console.log(storedAnswer);
+            console.log(dataBase[currentQuestion].correct);
+            if (storedAnswer==dataBase[currentQuestion].correct){
+                console.log("correct");
+                score++;
+            }
+            currentQuestion++;
+            if (currentQuestion<dataBase.length){
+                getQuestions();
+            }
+            else{
             
-        }
-        else{
-            quiz.style.color="green";
-        } 
-        quiz.innerHTML=" <h1>You have scored  "+score+"/"+dataBase.length+"</h1> <br> <br> <br>";
+                quiz.style.height=40+"vh";
+                quiz.style.textAlign="center";
+                quiz.style.paddingTop=10+"vh";
+                quiz.style.paddingleft=6+"vh";
+                quiz.style.paddingRight=4+"vh";
 
-    }
-    
-    
+                if (score<=2){
+                    quiz.innerHTML=`<h1>Vous venez d'echouer avec un score de <span style="
+                    color:red;" >${score}</span> /${dataBase.length}</h2>`;
+
+                }
+                else{
+                    quiz.innerHTML=`<h1>Vous venez de reussir avec un score de <span style="
+                    color:green;" >${score}</span> /${dataBase.length}</h2>`;
+                }
+            }
+        }
+        
+    })
     
 });

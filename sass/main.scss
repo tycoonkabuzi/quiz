@@ -8,6 +8,8 @@
     background-color: rgb(243, 241, 241);
     height: 100vh;
     &__questions{
+        transform: translateX(-80vh);
+        transition: 300ms ease-in-out;
         width: 70vh;
         height: auto;
         background-color: white;
